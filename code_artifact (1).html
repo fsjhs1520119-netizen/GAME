@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>銀河線間的微光 - 剪貼簿風五線譜與簡譜特訓</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FAF7F2',
+                            100: '#F5EFE6',
+                            200: '#EBE3D5',
+                            300: '#DCD0C0',
+                        },
+                        pastelPink: {
+                            50: '#FFF0F3',
+                            100: '#FCE7F0',
+                            200: '#F8C8DC',
+                            300: '#F2A6C4',
+                            400: '#E87A90',
+                            500: '#C9707F',
+                        },
+                        warmBeige: {
+                            100: '#F4EAD5',
+                            200: '#E8D5B7',
+                            300: '#D9C19D',
+                            800: '#5C4E4B',
+                            900: '#3D3130'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        hand: ['"Caveat"', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Scrapbook Background Grid & Base Texture */
+        body {
+            background-color: #FAF7F2;
+            background-image: 
+                radial-gradient(#e5d9cc 1px, transparent 1px), 
+                radial-gradient(#e5d9cc 1px, #FAF7F2 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            color: #4A3E3D;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        /* Force English Uppercase Globally */
+        .uppercase-en {
+            text-transform: uppercase;
+        }
+
+        /* Paper Card Shadows & Styles */
+        .scrapbook-card {
+            background-color: #FFFDF9;
+            border: 2px solid #EBE3D5;
+            border-radius: 20px;
+            box-shadow: 6px 8px 0px 0px rgba(92, 78, 75, 0.08), 0 10px 25px -5px rgba(248, 200, 220, 0.3);
+            position: relative;
+        }
+
+        .scrapbook-card-pink {
+            background-color: #FFF5F7;
+            border: 2px dashed #F2A6C4;
+            border-radius: 24px;
+            box-shadow: 6px 8px 0px 0px rgba(232, 122, 144, 0.15);
+        }
+
+        /* Washi Tape Decals */
+        .washi-tape-pink {
+            position: absolute;
+            height: 26px;
+            width: 110px;
+            background-color: rgba(248, 200, 220, 0.75);
+            border-left: 3px stroke #F2A6C4;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            z-index: 20;
+            backdrop-filter: blur(2px);
+            transform: rotate(-3deg);
+        }
+
+        .washi-tape-beige {
+            position: absolute;
+            height: 24px;
+            width: 95px;
+            background-color: rgba(232, 213, 183, 0.8);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            z-index: 20;
+            transform: rotate(4deg);
+        }
+
+        /* Staff Lines Styling */
+        .staff-line { stroke: #6E5D5A; stroke-width: 2.2; }
+        .staff-line-ledger { stroke: #E87A90; stroke-width: 2.8; stroke-dasharray: 0; }
+
+        .shake-animation { animation: shake 0.4s ease-in-out; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen relative selection:bg-pastelPink-200 selection:text-warmBeige-900 uppercase-en">
+
+    <!-- Scrapbook Header / Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-cream-50/90 backdrop-blur-md border-b-2 border-cream-200 px-4 py-3">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            
+            <!-- Brand & Title -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-2xl bg-pastelPink-100 border-2 border-pastelPink-300 flex items-center justify-center text-pastelPink-500 shadow-sm group-hover:rotate-6 transition transform">
+                    <i class="fa-solid fa-music text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif font-black text-lg sm:text-xl text-warmBeige-900 flex items-center gap-2">
+                        銀河線間的微光
+                        <span class="text-xs font-hand text-pastelPink-500 bg-pastelPink-100 px-2 py-0.5 rounded-full border border-pastelPink-200 tracking-wider">SCRAPBOOK EDITION</span>
+                    </h1>
+                    <p class="text-[11px] text-warmBeige-800 tracking-wider">五線譜 ⚡ 簡譜秒讀手帳特訓</p>
+                </div>
+            </a>
+            
+            <!-- Navigation Badges -->
+            <div class="flex items-center space-x-3 text-xs sm:text-sm">
+                <div class="bg-white px-3 py-1.5 rounded-full border border-cream-200 shadow-sm flex items-center space-x-1.5">
+                    <i class="fa-solid fa-star text-amber-400"></i>
+                    <span class="text-warmBeige-800 font-medium">星光集章:</span>
+                    <span id="scoreDisplay" class="font-bold text-pastelPink-500 text-base">0</span>
+                </div>
+                <div class="bg-white px-3 py-1.5 rounded-full border border-cream-200 shadow-sm flex items-center space-x-1.5">
+                    <i class="fa-solid fa-heart text-pastelPink-400 animate-pulse"></i>
+                    <span class="text-warmBeige-800 font-medium">連勝:</span>
+                    <span id="streakDisplay" class="font-bold text-warmBeige-900 text-base">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Scrapbook Container -->
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 space-y-10 relative z-10">
+
+        <!-- HERO SECTION: Scrapbook Cover Title -->
+        <section class="text-center relative py-4">
+            <!-- Decorative Tape Top Left -->
+            <div class="washi-tape-pink -top-2 left-8"></div>
+            <div class="washi-tape-beige -top-1 right-12"></div>
+
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-pastelPink-100 border border-pastelPink-300 text-xs font-bold text-pastelPink-500 shadow-sm mb-3">
+                <i class="fa-solid fa-bookmark text-pastelPink-400"></i>
+                <span>溫柔奶茶粉調 • 視讀條件反射特訓課</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-warmBeige-900 tracking-tight leading-tight">
+                於手帳張頁間，聽懂銀河的律動 ✨
+            </h1>
+
+            <p class="max-w-xl mx-auto text-xs sm:text-sm text-warmBeige-800 leading-relaxed font-normal mt-3">
+                將硬梆梆的五線譜轉換為柔軟親切的簡譜 <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold border border-amber-200">1 2 3 4 5 6 7</span>！配合相框中的霓虹熔岩挑戰，開啟精彩讀譜與冒險之旅。
+            </p>
+        </section>
+
+        <!-- NEON LAVA ESCAPE GAME IN A PICTURE FRAME -->
+        <section class="scrapbook-card p-6 space-y-4 relative overflow-hidden">
+            <div class="washi-tape-pink -top-3 left-12"></div>
+            <div class="washi-tape-beige -bottom-3 right-8"></div>
+
+            <div class="flex items-center justify-between border-b-2 border-cream-200 pb-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-9 h-9 rounded-xl bg-warmBeige-900 flex items-center justify-center text-cyan-400 font-bold shadow-md">
+                        <i class="fa-solid fa-person-running text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-serif font-bold text-lg text-warmBeige-900 flex items-center gap-2">
+                            ⚡ NEON SIDE RUNNER
+                            <span class="text-[10px] bg-cyan-100 text-cyan-600 px-2 py-0.5 rounded-full font-sans font-bold border border-cyan-200">SIDE SCROLLER</span>
+                        </h2>
+                        <p class="text-xs text-warmBeige-800">由左向右衝刺！避開橫向障礙與熔岩坑！（SPACE / 點擊跳躍，A/D / 左右鍵控制速度）</p>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <span class="text-xs text-warmBeige-800 block">SCORE</span>
+                    <span id="neonGameScore" class="font-mono font-bold text-lg text-pastelPink-500">0</span>
+                </div>
+            </div>
+
+            <!-- Picture Frame Container -->
+            <div class="relative mx-auto max-w-2xl bg-warmBeige-800 p-4 sm:p-5 rounded-3xl border-4 border-warmBeige-900 shadow-2xl">
+                <!-- Inner Frame Shadow Matting -->
+                <div class="relative w-full aspect-[16/9] bg-black rounded-xl overflow-hidden border-2 border-amber-200/40 shadow-inner flex flex-col items-center justify-center">
+                    
+                    <!-- Game Canvas (Strictly Black Background) -->
+                    <canvas id="neonCanvas" class="w-full h-full block bg-black cursor-pointer"></canvas>
+
+                    <!-- Game Overlay UI -->
+                    <div id="neonOverlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center z-10 transition-all">
+                        <h3 id="neonOverlayTitle" class="text-2xl sm:text-3xl font-black text-cyan-400 drop-shadow-[0_0_12px_rgba(0,243,255,0.8)] mb-2 font-serif">
+                            ⚡ NEON SIDE RUNNER
+                        </h3>
+                        <p id="neonOverlayDesc" class="text-xs sm:text-sm text-cream-100 max-w-xs mb-4 leading-relaxed">
+                            由左向右極速前進！畫面不向上捲動，專注於跳過橫向熔岩坑與霓虹雷射！
+                        </p>
+                        <button onclick="startNeonGame()" class="bg-gradient-to-r from-cyan-400 to-pastelPink-400 hover:from-cyan-300 hover:to-pastelPink-300 text-black font-black text-sm px-6 py-2.5 rounded-full shadow-[0_0_15px_rgba(0,243,255,0.6)] transform hover:scale-105 active:scale-95 transition">
+                            <i class="fa-solid fa-play mr-1.5"></i> START (FREE PLAY)
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Touch Controls -->
+                <div class="flex items-center justify-between mt-3 px-2">
+                    <div class="flex space-x-2">
+                        <button ontouchstart="setKey('Left', true)" ontouchend="setKey('Left', false)" class="w-10 h-10 bg-warmBeige-900 text-cyan-400 border border-cyan-500/30 rounded-xl active:bg-cyan-500/20 flex items-center justify-center text-sm font-bold shadow">
+                            ◀
+                        </button>
+                        <button ontouchstart="setKey('Right', true)" ontouchend="setKey('Right', false)" class="w-10 h-10 bg-warmBeige-900 text-cyan-400 border border-cyan-500/30 rounded-xl active:bg-cyan-500/20 flex items-center justify-center text-sm font-bold shadow">
+                            ▶
+                        </button>
+                    </div>
+
+                    <button ontouchstart="setKey('Jump', true)" ontouchend="setKey('Jump', false)" class="px-5 h-10 bg-warmBeige-900 text-pastelPink-400 border border-pastelPink-500/30 rounded-xl active:bg-pastelPink-500/20 flex items-center justify-center text-xs font-bold shadow">
+                        <i class="fa-solid fa-angles-up mr-1"></i> JUMP
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MAIN MUSIC STAFF TRAINING GAME SECTION -->
+        <section id="gameSection" class="scroll-mt-20">
+            <div class="scrapbook-card p-5 sm:p-7 space-y-6">
+                
+                <!-- Section Header & Level Selector -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-cream-200 pb-4">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-pastelPink-400 animate-ping"></span>
+                            <h2 class="font-serif font-bold text-xl text-warmBeige-900">
+                                📖 手帳五線譜特訓場
+                            </h2>
+                        </div>
+                        <p class="text-xs text-warmBeige-800 mt-1">看畫紙上的音符，秒速按下方簡譜數字（1 ~ 7）回答！</p>
+                    </div>
+
+                    <!-- Level Selector Buttons -->
+                    <div class="flex flex-wrap items-center gap-1.5 text-xs">
+                        <button onclick="changeLevel(1)" id="lvlBtn1" class="px-3.5 py-1.5 rounded-full font-bold bg-pastelPink-400 text-white shadow-sm">LEVEL 1: LINE NOTES</button>
+                        <button onclick="changeLevel(2)" id="lvlBtn2" class="px-3.5 py-1.5 rounded-full font-bold bg-cream-
